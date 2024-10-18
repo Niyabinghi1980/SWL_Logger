@@ -30,8 +30,10 @@ current_session_reports = []
 # Function to put in data and save in Excel
 def save_swl_report():
     callsign_1 = entry_callsign_1.get()
+    name_1 = entry_name_1.get()
     qth_locator_1 = entry_qth_locator_1.get()
     callsign_2 = entry_callsign_2.get()
+    name_2 = entry_name_2.get()
     qth_locator_2 = entry_qth_locator_2.get()
     date = entry_date.get()
     time = entry_time.get()
@@ -51,12 +53,12 @@ def save_swl_report():
         sheet = workbook.active
         # Add header
         sheet.append(
-            ["Callsign 1", "QTH Locator 1", "Callsign 2", "QTH Locator 2", "Date", "Time (UTC)", "Frequency (MHz)",
-             "Mode", "Readability", "Signal strength", "Tone", "Details"])
+            ["Callsign 1", "Name 1", "QTH Locator 1", "Callsign 2", "Name 2", "QTH Locator 2", "Date", "Time (UTC)",
+             "Freq. (MHz)", "Mode", "Readability", "Signal strength", "Tone", "Details"])
 
     # Add new report
-    sheet.append([callsign_1, qth_locator_1, callsign_2, qth_locator_2, date, time, frequency, mode, readability,
-                  signal_strength, tone, details])
+    sheet.append([callsign_1, name_1, qth_locator_1, callsign_2, name_2, qth_locator_2, date, time, frequency, mode,
+                  readability, signal_strength, tone, details])
 
     # Save file
     workbook.save("swl_reports.xlsx")
@@ -68,8 +70,10 @@ def save_swl_report():
 
     # Empty inputbox for new report
     entry_callsign_1.delete(0, tk.END)
+    entry_name_1.delete(0, tk.END)
     entry_qth_locator_1.delete(0, tk.END)
     entry_callsign_2.delete(0, tk.END)
+    entry_name_2.delete(0, tk.END)
     entry_qth_locator_2.delete(0, tk.END)
     entry_date.delete(0, tk.END)
     entry_time.delete(0, tk.END)
@@ -142,6 +146,11 @@ entry_callsign_1 = tk.Entry(root)
 entry_callsign_1.grid(row=0, column=1, padx=5, pady=5)
 entry_callsign_1.bind("<Return>", next_field)  # Connect Enter
 
+tk.Label(root, text="Name 1:").grid(row=0, column=0, padx=5, pady=5, sticky="e")
+entry_name_1 = tk.Entry(root)
+entry_name_1.grid(row=0, column=1, padx=5, pady=5)
+entry_name_1.bind("<Return>", next_field)  # Connect Enter
+
 tk.Label(root, text="QTH Locator 1:").grid(row=1, column=0, padx=5, pady=5, sticky="e")
 entry_qth_locator_1 = tk.Entry(root)
 entry_qth_locator_1.grid(row=1, column=1, padx=5, pady=5)
@@ -151,6 +160,11 @@ tk.Label(root, text="Callsign 2:").grid(row=2, column=0, padx=5, pady=5, sticky=
 entry_callsign_2 = tk.Entry(root)
 entry_callsign_2.grid(row=2, column=1, padx=5, pady=5)
 entry_callsign_2.bind("<Return>", next_field)  # Connect Enter
+
+tk.Label(root, text="Name 2:").grid(row=0, column=0, padx=5, pady=5, sticky="e")
+entry_name_2 = tk.Entry(root)
+entry_name_2.grid(row=0, column=1, padx=5, pady=5)
+entry_name_2.bind("<Return>", next_field)  # Connect Enter
 
 tk.Label(root, text="QTH Locator 2:").grid(row=3, column=0, padx=5, pady=5, sticky="e")
 entry_qth_locator_2 = tk.Entry(root)
